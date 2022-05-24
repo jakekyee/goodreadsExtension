@@ -57,7 +57,7 @@ matches[0].innerText = mainString;
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-//sleep function
+//sleep function - I don't actually get
 async function continuousReload() {
     for (let i = 0; i < 100000; i++) {
         console.log("triggered");
@@ -85,11 +85,15 @@ continuousReload();
 //Continually checks fro new things to rate
 
 
-
+//edge case time! - If rating is 4.00, "really liked it\n" is attached to first bit
 function findzScore(rating) {
     let mean = 3.9547;
     let stDev = 0.2658;   
     zScore = (rating - mean)/stDev;
+    if (isNaN(zScore) == true) {
+        rating = 4.00;
+        zScore = (rating - mean)/stDev;
+    }
     return zScore;
 }
 
@@ -113,6 +117,7 @@ function findPercentile(zScore) {
         firstNum = parseInt(firstNum);
         console.log(firstNum);
         secondNum = parseInt(secondNum);
+        
         console.log(secondNum);
         percentile = 1 - ztable[34-firstNum][secondNum];
         percentile = Math.floor(percentile * 1000);
