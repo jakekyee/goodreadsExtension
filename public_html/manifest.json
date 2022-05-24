@@ -1,0 +1,28 @@
+{
+    "name": "goodreadsAdjust",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "author": "Jk Yee",
+    "action": {
+    "default_popup": "index.html"
+     },
+    
+     "content_scripts": [
+   {
+     "matches": [
+         "https://*.goodreads.com/*",
+         "https://www.goodreads.com/*"
+            
+            ],
+     "all_frames": true, 
+    "js": ["execute.js"]
+   }
+ ],
+   "background": {
+    "service_worker": "execute.js"
+  },
+   "permissions": [
+       "storage",
+       "activeTab"
+    ]
+}
