@@ -82,7 +82,7 @@ async function continuousReload() {
 }
 
 continuousReload();
-//Continually checks fro new things to rate
+//Continually checks for new things to rate
 
 
 //edge case time! - If rating is 4.00, "really liked it\n" is attached to first bit
