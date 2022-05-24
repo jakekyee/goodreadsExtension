@@ -82,15 +82,25 @@ async function continuousReload() {
 }
 
 continuousReload();
-//Continually checks for new things to rate
+//Continually checks fro new things to rate
 
 
+
+const miniBroadMatch = document.querySelectorAll("span[class='greyText smallText'");
+    for (var z=0; z < miniBroadMatch.length; z++) {
+        var selected = miniBroadMatch[z].innerText;
+                let miniRating = selected.charAt(11) + "." + selected.charAt(13) + selected.charAt(14);
+                miniRating = parseFloat(miniRating);
+                let miniPercentile = findPercentile(findzScore(miniRating));
+                var miniString = selected.substr(0, 16) + " - " + miniPercentile + "% " + selected.substr(16);
+                miniBroadMatch[z].innerText = miniString;
+                }
 //edge case time! - If rating is 4.00, "really liked it\n" is attached to first bit
 function findzScore(rating) {
     let mean = 3.9547;
     let stDev = 0.2658;   
     zScore = (rating - mean)/stDev;
-    if (isNaN(zScore) == true) {
+    if (isNaN(zScore) === true) {
         rating = 4.00;
         zScore = (rating - mean)/stDev;
     }
