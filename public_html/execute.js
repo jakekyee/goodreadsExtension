@@ -51,6 +51,17 @@ var mainString = mainRating + " - " + mainPercentile + "%";
 matches[0].innerText = mainString;
 }
 ////////////////////////////////////////////////////////////
+//Imagine ever Hardcoding inefficient things lmao
+
+const specialMatch = document.querySelectorAll("div[class='RatingStatistics__rating']");
+for (z = 0; z < specialMatch.length; z++) {
+    var specialRating = specialMatch[z].innerText;
+    var specialPercentile = doEverything(specialRating);
+    var specialString = specialRating + " - " + specialPercentile + "%";
+    specialMatch[z].innerText = specialString;
+}
+
+
 
 //Please forgive me for this
 
@@ -76,6 +87,22 @@ async function continuousReload() {
                 miniBroadMatch[z].innerText = miniString;
             }
 }
+
+
+const specialBroadMatch = document.querySelectorAll("span[class='AverageRating__ratingValue'");
+for (z = 0; z < specialBroadMatch.length; z++) {
+    var specialRating = specialBroadMatch[z].innerText;
+    if (specialRating.slice(-1) === "%") {
+        
+    } else {
+    var specialPercentile = doEverything(specialRating);
+    var specialString = specialRating + " - " + specialPercentile + "%";
+    specialBroadMatch[z].innerText = specialString;
+    }
+}
+
+/////////////////////////////////////////////////IknowitsnotreadableImsorryfutureme
+
 
         await sleep(i * 100);       
     }
@@ -134,6 +161,11 @@ function findPercentile(zScore) {
         percentile = percentile/10;
         return percentile;
     }
+}
+
+function doEverything(rating) {
+    percentile = findPercentile(findzScore(rating));
+    return percentile;
 }
 
 
